@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <style>
+        select {
+            width: 162px; /* Ширина списка в пикселах */
+        }
+        .flex-cols{
+            min-height: 100rem;
+            background-color:whitesmoke;
+        }
+        .flex-col{
+            min-height: 100rem;
+            background-color:white;
+        }
+    </style>
+</head>
+<body>
+<div class="form-group flex-cols">
+    <form class="form-horizontal" th:action="@{/delete}" th:method="POST">
+        <p align="center"><b>Delete user</b></p>
+        <tr th:each="user : ${messages}">
+            <h6 align="center">Id</h6>
+            <p align="center">  <input type="number" name="id" th:value="${user.getId()}"/></p>
+            <h6 align="center">First Name</h6>
+            <p align="center">   <input  name="name" type="text" th:value="${user.getName()}"id="name" required/></p>
+            <h6 align="center">Last Name</h6>
+            <p align="center"> <input name="lastName"type="text"th:value="${user.getLastName()}"id="lastName" required/></p>
+            <h6 align="center">Age</h6>
+            <p align="center"> <input name="age" type="number" th:value="${user.getAge()}"id="age"required/></p>
+            <h6 align="center">Email</h6>
+            <p align="center"> <input name="email" type="email" th:value="${user.getEmail()}"id="email"required/></p>
+            <h6 align="center">Password</h6>
+            <p align="center">  <input name="password"type="password"th:value="${user.getPassword()}"id="password" required/></p>
+            <div><p align="center">
+                <select  name="Role" size="3">
+                    <option th:value="0">ADMIN</option>
+                    <option th:value="1">USER</option>
+                    <option th:value="2"></option>
+                </select></p>
+            </div>
+            <table align="center">
+                <tr>
+                    <td> <a class="btn btn-default" href="/admin"> Close</a></button></td>
+                    <td> <input class="btn btn-danger" type="submit"  value="Delete"></td>
+                </tr>
+            </table>
+        </tr>
+    </form>
+</div>
+</body>
+</html>

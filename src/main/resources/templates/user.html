@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+        .flex-cols{
+            min-height: 100rem;
+            background-color:whitesmoke;
+        }
+        .flex-col{
+            min-height: 100rem;
+            background-color:white;
+        }
+        .btns {
+            min-width: 230px;
+            right: 30px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="fixed-top bg-primary" style="background-color:black">
+    <tr th:each ="user : ${messages}">
+        <td th:text="${user.getEmail()}"></td>
+        <td>with roles:</td>
+        <td th:text="${user.getRoleString()}"></td>
+        <td><a href="/logout"/>Logout</a></td>
+    </tr>
+</div>
+<div>
+    <div class= "container-fluid">
+        <div class="row">
+            <div class="col-md-2 flex-col" >
+                <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                    <a class="btn btns btn-primary"href="#">User</a>
+                </div>
+            </div>
+
+            <div class="col-md-10 flex-cols">
+                <h2 class="col-md-10">User Information-page</h2>
+                <div class="col-md-10">
+                    <div class ="card" style="background-color:whitesmoke">
+                        <div class="card-body">
+                            <h4 class="card-title">About user</h4>
+                        </div>
+                    </div>
+
+                    <div class="table-responcive" style="background-color:white">
+    <table class="table table-hover table-bordered table-condensed">
+        <tr>
+            <td><h5>Id</h5></td>
+            <td><h5>First Name</h5></td>
+            <td><h5>Last Name</h5></td>
+            <td><h5>Age</h5></td>
+            <td><h5>Email</h5></td>
+            <td><h5>Role</h5></td>
+        </tr>
+        <tr   th:each="user : ${messages}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getLastName()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getEmail()}"></td>
+            <td th:text="${user.getRoleString()}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

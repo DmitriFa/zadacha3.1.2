@@ -1,0 +1,118 @@
+ <!doctype html>
+ <html lang="en" xmlns:th="http://java.sun.com/jsf/composite">
+ <head>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <!-- Latest compiled and minified CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <!-- Optional theme -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+     <!-- Latest compiled and minified JavaScript -->
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+     <!-- Bootstrap core CSS -->
+     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Custom styles for this template -->
+     <link href="dashboard.css" rel="stylesheet">
+     <style>
+         .flex-cols{
+             min-height: 100rem;
+             background-color:whitesmoke;
+         }
+         .flex-col{
+             min-height: 100rem;
+             background-color:white;
+         }
+         .btns {
+             min-width: 230px;
+             right: 30px;
+         }
+
+     </style>
+
+
+ </head>
+
+ <body>
+ <div class="fixed-top bg-primary" style="background-color:black">
+     <tr th:each ="user : ${message}">
+         <td th:text="${user.getEmail()}"></td>
+         <td>with roles:</td>
+         <td th:text="${user.getRoleString()}"></td>
+         <td><a href="/logout"/>Logout</a></td>
+     </tr>
+ </div>
+   <div class= "container-fluid flex-col">
+     <div class="row" >
+         <div class="col-md-2">
+             <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                 <a class="btn btns btn-primary"href="#">Admin</a>
+                 <a class="btn btns btn-secondary"href="/user">User</a>
+             </div>
+         </div>
+
+         <div class="col-md-10 flex-cols" >
+         <h2 class="col-md-10">Admin panel</h2>
+         <div class="col-md-10">
+             <ul class="nav nav-tabs" role="tablist">
+             <li class="active"><a href="#mesage" role="tab" data-toggle="tab">Users table</a></li>
+                 <li><a href="/add" role="tab" data-toggle="tab">New User</a></li>
+             </ul>
+             <div class ="card" style="background-color:whitesmoke">
+                 <div class="card-body">
+                     <div ><h4>All users</h4></div>
+                 </div>
+                            </div>
+
+
+            <div class="table-responcive" style="background-color:white">
+        <table class="table table-hover ">
+        <tr>
+            <td><h5>Id</h5></td>
+            <td><h5>First Name</h5></td>
+            <td><h5>Last Name</h5></td>
+            <td><h5>Age</h5></td>
+            <td><h5>Email</h5></td>
+            <td><h5>Role</h5></td>
+            <td><h5>Edit</h5></td>
+            <td><h5>Delete</h5></td>
+        </tr>
+    </tr>
+    <tr th:each="user : ${messages}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getLastName()}"></td>
+        <td th:text="${user.getAge()}"></td>
+        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getRoleString()}"></td>
+        <td><a class="btn btn-info" th:href ="@{/edit/{id}(id=${user.getId()})}">Edit</a></td>
+        <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${user.getId()})}">Delete</a></td>
+    </tr>
+   <!-- <tr>
+            <td colspan="8">
+                <a href="/add"/><button class="btn btn-success">Add new user</button></a></td> 
+        </tr> -->
+    </table>
+                <a href="/logout"/>Logout</a>
+                <div class= "container">
+                    <div class="row">
+                        <div class="col-md-12" style="background-color:whitesmoke">
+                            <div class="card-body"></div>
+                                <div class="card"></div>
+                                <div class="card-title"><h1></h1>  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+         </div>
+</div>
+</div>
+    </div>
+   </div>
+        <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+</body>
+</html>
